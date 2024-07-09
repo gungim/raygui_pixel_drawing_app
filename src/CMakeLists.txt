@@ -7,7 +7,7 @@ set(SOURCES
 	main.cpp
 	new_win.cpp
 	draw_win.cpp
-	project.cpp
+	app_utils.cpp
 	topbar.cpp
 	import_file.cpp
 	context.cpp
@@ -16,7 +16,7 @@ set(SOURCES
 set(HEADERS
 	new_win.hpp
 	draw_win.hpp
-	project.hpp
+	app_utils.hpp
 	topbar.hpp
 	context.hpp
 	import_file.hpp

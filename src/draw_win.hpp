@@ -1,24 +1,27 @@
+#include "context.hpp"
 #include "raylib.h"
 
-class DrawWin {
-  private:
-    int width;
-    int height;
-    Texture texture;
+namespace app {
 
-    Image image;
-    float scale;
-    Vector2 offset;
+    class DrawWin {
+      private:
+        int width;
+        int height;
+        Texture texture;
 
-  protected:
-    Texture2D textureBg;
+        Image image;
+        float scale;
+        Vector2 offset;
+        Project project;
 
-  public:
-    DrawWin();
-    DrawWin(int w, int h);
-    ~DrawWin();
-    void Draw();
-    void DrawPixel();
-    void LoadImg();
-    void CreateTransBG();
-};
+      protected:
+        Texture2D textureBg;
+
+      public:
+        DrawWin();
+        ~DrawWin();
+        void Draw();
+        void DrawPixel();
+        void LoadProject();
+    };
+} // namespace app

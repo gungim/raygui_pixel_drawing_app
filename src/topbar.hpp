@@ -1,17 +1,20 @@
 #include "context.hpp"
 #include "new_win.hpp"
 
-class TopBar {
-  private:
-	float width;
-	float height;
+namespace app {
 
-    NewWin newWin;
-    bool showNewWindow;
+    class TopBar {
+      private:
+        float width;
+        float height;
 
-  public:
-    TopBar();
-    ~TopBar();
-    void Draw(Context* context);
-    void LoadFile();
-};
+        NewWin newWin;
+        bool showNewWindow;
+
+      public:
+        TopBar();
+        ~TopBar();
+        void Draw(Context* context);
+        void LoadFile();
+    };
+} // namespace app

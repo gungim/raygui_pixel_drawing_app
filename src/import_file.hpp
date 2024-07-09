@@ -1,29 +1,32 @@
 #include "context.hpp"
 #include "raygui.h"
 
-class ImportFile {
-  private:
-    int dataSize;
-    char fileNamePath[256];
-    char fileName[64];
+namespace app {
 
-    int widthValue;
-    int heightValue;
-    int channelsActive;
-    int bitDepthActive;
-    int pixelFormatActive;
-    int headerSizeValue;
+    class ImportFile {
+      private:
+        int dataSize;
+        char fileNamePath[256];
+        char fileName[64];
 
-    bool widthEditMode;
-    bool heightEditMode;
-    bool headerSizeEditMode;
+        int widthValue;
+        int heightValue;
+        int channelsActive;
+        int bitDepthActive;
+        int pixelFormatActive;
+        int headerSizeValue;
 
-    Vector2 offset;
-    bool open;
-	bool btnLoadPressed;
+        bool widthEditMode;
+        bool heightEditMode;
+        bool headerSizeEditMode;
 
-  public:
-    ImportFile();
-    ~ImportFile();
-    void Draw(Context context);
-};
+        Vector2 offset;
+        bool open;
+        bool btnLoadPressed;
+
+      public:
+        ImportFile();
+        ~ImportFile();
+        void Draw(Context context);
+    };
+} // namespace app

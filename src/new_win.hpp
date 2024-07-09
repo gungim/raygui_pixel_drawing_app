@@ -7,24 +7,27 @@ struct DroppedFileConfig {
     char* bitDepthTextList[3];
 };
 
-class NewWin {
-  private:
-    char name[128];
-    int width;
-    int height;
-    Vector2 offset;
+namespace app {
 
-    bool nameEditMode;
-    bool widthEditMode;
-    bool heightEditMode;
+    class NewWin {
+      private:
+        char name[128];
+        int width;
+        int height;
+        Vector2 offset;
 
-    bool open;
+        bool nameEditMode;
+        bool widthEditMode;
+        bool heightEditMode;
 
-    bool btnLoadPressed;
-    bool btnNewPressed;
+        bool open;
 
-  public:
-    NewWin();
-    ~NewWin();
-    void Draw();
-};
+        bool btnLoadPressed;
+        bool btnNewPressed;
+
+      public:
+        NewWin();
+        ~NewWin();
+        void Draw();
+    };
+} // namespace app

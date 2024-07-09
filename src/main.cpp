@@ -34,15 +34,9 @@ int main() {
     Vector2 windowOffset = {screenWidth / 2 - 200 / 2,
                             screenHeight / 2 - 465 / 2};
 
-    Context context = Context();
-    DrawWin drawWin = DrawWin(700, 800);
-    TopBar topbar = TopBar();
-    ImportFile importFile = ImportFile();
-
-    Vector2 scroll = {0, 0};
-    Rectangle scissorRec = {0};
-    Rectangle panelPounds = {0, 0, screenWidth, 32};
-    Rectangle panelContentRec = {0, 0, 1200, 30};
+    app::Context context = app::Context();
+    app::TopBar topbar = app::TopBar();
+    app::ImportFile importFile = app::ImportFile();
 
     // drawWin.CreateTransBG();
 
@@ -58,20 +52,9 @@ int main() {
         //----------------------------------------------------------------------------------
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        // topbar.Draw(&context);
+        topbar.Draw(&context);
 
-        // Draw project list scroll bar
-        GuiScrollPanel(panelPounds, NULL, panelContentRec, &scroll,
-                       &scissorRec);
-        BeginScissorMode(scissorRec.x, scissorRec.y, scissorRec.width,
-                         scissorRec.height);
-
-        GuiGrid((Rectangle){panelPounds.x + scroll.x, panelPounds.y + scroll.y,
-                            panelContentRec.width, panelContentRec.height},
-                NULL, 16, 3, NULL);
-        EndScissorMode();
-
-        // importFile.Draw(context);
+        importFile.Draw(context);
 
         //----------------------------------------------------------------------------------
         EndDrawing();
@@ -83,4 +66,25 @@ int main() {
     //--------------------------------------------------------------------------------------
 
     return 0;
+}
+
+// Draw project list scroll bar
+void DrawProjectBar() {
+    float screenWidth = 600;
+    Vector2 scroll = {0, 0};
+    Rectangle scissorRec = {0};
+    Rectangle panelPounds = {0, 0, screenWidth, 32};
+    Rectangle panelContentRec = {0, 0, 1200, 30};
+    GuiScrollPanel(panelPounds, NULL, panelContentRec, &scroll, &scissorRec);
+    BeginScissorMode(scissorRec.x, scissorRec.y, scissorRec.width,
+                     scissorRec.height);
+
+    // for (int i = 0; i <= context.ProjectCount(); i++) {
+    //     char* dev = context.projectsName.at(i).data();
+    // GuiButton((Rectangle){0, 0, 120, 30}, "Project 1");
+    // GuiButton((Rectangle){120 * 1 + 2, 0, 120, 30}, "Project 2");
+    // GuiButton((Rectangle){120 * 2 + 2 * 2, 0, 120, 30}, "Project 3");
+    // GuiButton((Rectangle){120 * 3 + 2 * 3, 0, 120, 30}, "Project 4");
+    // }
+    EndScissorMode();
 }

@@ -100,7 +100,8 @@ void ImportFile::Draw(Context context) {
                  "Size:");
         if (GuiValueBox(
                 (Rectangle){this->offset.x + 55, this->offset.y + 370, 85, 25},
-                NULL, &this->headerSizeValue, 0, 10000, this->headerSizeEditMode))
+                NULL, &this->headerSizeValue, 0, 10000,
+                this->headerSizeEditMode))
             this->headerSizeEditMode = !this->headerSizeEditMode;
         GuiLabel(
             (Rectangle){this->offset.x + 145, this->offset.y + 370, 30, 25},
@@ -152,14 +153,20 @@ void ImportFile::Draw(Context context) {
 
                 // Select correct format depending on channels and bpp
                 if (bpp == 8) {
-                    if (channels == 1)
+                    switch (channels) {
+                    case 1:
                         format = PIXELFORMAT_UNCOMPRESSED_GRAYSCALE;
-                    else if (channels == 2)
+                        break;
+                    case 2:
                         format = PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA;
-                    else if (channels == 3)
+                        break;
+                    case 3:
                         format = PIXELFORMAT_UNCOMPRESSED_R8G8B8;
-                    else if (channels == 4)
+                        break;
+                    case 4:
                         format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8;
+                        break;
+                    }
                 } else if (bpp == 32) {
                     if (channels == 1)
                         format = PIXELFORMAT_UNCOMPRESSED_R32;

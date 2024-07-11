@@ -1,15 +1,15 @@
 #include "draw_win.hpp"
 #include "app_utils.hpp"
+#include "context.hpp"
 #include "raygui.h"
 #include "raylib.h"
 
 namespace app {
     DrawWin::DrawWin() {
-        this->project = Project();
-        this->width = this->project.GetWidth();
-        this->height = this->project.GetHeight();
-
-        this->textureBg = CreateBG(this->width, this->height);
+        Project* pr = new Project();
+        this->project = pr;
+        this->width = pr->GetWidth();
+        this->height = pr->GetHeight();
 
         int screenWidth = GetScreenWidth();
         int screenHeight = GetScreenHeight();
@@ -37,7 +37,7 @@ namespace app {
         UpdateTexture(this->texture, this->image.data);
     }
     void DrawWin::LoadProject() {
-        Texture2D tt = this->project.GetTexture();
+        Texture2D tt = this->project->GetTexture();
         if (tt.id) {
             this->texture = tt;
         }

@@ -1,25 +1,12 @@
 #include "context.hpp"
 
 namespace app {
+    Context* Context::m_instance = nullptr;
+    Context::Context() { m_instance = this; }
+    Context::~Context() { m_instance = nullptr; }
 
-    Context::Context() {
-        this->project = Project();
-        this->projects = {};
-        this->projectsName = {};
-    }
-    Context::~Context() {}
-
-    void Context::AddProject(Project pr) {
-        // this->projects.push_back(pr);
-        // this->projectsName.push_back(pr.GetName());
-        this->project = pr;
-    }
-    void Context::UpdateProject(Project pr, int index) {
-
-    };
-
-    int Context::ProjectCount() { return this->projects.size(); }
-
+} // namespace app
+namespace app {
     Project::Project() {
         this->width = 32;
         this->height = 32;

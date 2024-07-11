@@ -1,5 +1,4 @@
 #include "raylib.h"
-#include <string>
 #include <vector>
 
 #pragma once
@@ -27,11 +26,11 @@ namespace app {
 
     class Context {
       private:
-        std::vector<Project> projects;
-        Project project;
+        static Context* m_instance;
 
       public:
-        std::vector<std::string> projectsName;
+        static Context* instance() { return m_instance; }
+
         const char* pixelFormatTextList[8] = {
             "CUSTOM", "GRAYSCALE", "GRAY ALPHA", "R5G6B5",
             "R8G8B8", "R5G5B5A1",  "R4G4B4A4",   "R8G8B8A8"};
@@ -40,9 +39,5 @@ namespace app {
 
         Context();
         ~Context();
-
-        void AddProject(Project pr);
-        void UpdateProject(Project pr, int index);
-        int ProjectCount();
     };
 } // namespace app

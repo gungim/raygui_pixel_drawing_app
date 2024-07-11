@@ -1,21 +1,27 @@
 #include "topbar.hpp"
+#include "new_win.hpp"
 #include "raygui.h"
-#include "raylib.h"
 
 namespace app {
 
     TopBar::TopBar() {
-        this->newWin = NewWin();
+        this->newWin = new NewWin();
 
         int screenWidth = GetScreenWidth();
-        int screenHeight = GetScreenHeight();
 
         this->width = screenWidth;
         this->height = 32;
     }
     TopBar::~TopBar() {}
-    void TopBar::Draw(Context* context) {
-        GuiPanel((Rectangle){0, 0, this->width, this->height}, NULL);
-        this->newWin.Draw();
+    void TopBar::draw(Context* context, Vector2 offset) {
+        GuiPanel((Rectangle){0, 0, this->width, this->height}, nullptr);
+        if (GuiButton((Rectangle){5, 4, 24, 24}, "#8#")) {
+            this->newWin->open();
+        };
+        GuiButton((Rectangle){(24 + 5) * 1 + 5, 4, 24, 24}, "#2#");
+        if (GuiButton((Rectangle){(24 + 5) * 2 + 5, 4, 24, 24}, "#12#")) {
+        };
+
+        this->newWin->draw();
     }
 } // namespace app

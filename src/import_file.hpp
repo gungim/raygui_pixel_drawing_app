@@ -1,7 +1,7 @@
-#include "context.hpp"
 #include "raygui.h"
 
 namespace app {
+    class Context;
 
     class ImportFile {
       private:

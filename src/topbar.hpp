@@ -1,20 +1,20 @@
-#include "context.hpp"
-#include "new_win.hpp"
+#include "raylib.h"
 
 namespace app {
+    class NewWin;
+    class Context;
 
     class TopBar {
       private:
         float width;
         float height;
 
-        NewWin newWin;
-        bool showNewWindow;
+        NewWin* newWin;
 
       public:
         TopBar();
         ~TopBar();
-        void Draw(Context* context);
+        void draw(Context* context, Vector2 offset);
         void LoadFile();
     };
 } // namespace app

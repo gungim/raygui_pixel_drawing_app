@@ -3,9 +3,8 @@
 
 #include <cstdlib> // Required for: malloc() and free()
 namespace app {
+    Image CreateTransparentImage(int width, int height) {
 
-    Texture2D CreateBG(int width, int height) {
-        // Dynamic memory allocation to store pixels data (Color type)
         Color* pixels = (Color*)malloc(width * height * sizeof(Color));
 
         for (int y = 0; y < height; y++) {
@@ -23,9 +22,17 @@ namespace app {
                      .height = height,
                      .format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
                      .mipmaps = 1};
-
-        Texture2D texture = LoadTextureFromImage(img);
-        UnloadImage(img);
-        return texture;
+        return img;
+    }
+    Vector2 MousePositionOnTexture(Vector2 texturePos, float scale) {
+        Vector2 mousePosition = GetMousePosition();
+        Vector2 pixelPositon = {(mousePosition.x - texturePos.x) / scale,
+                                (mousePosition.y - texturePos.y) / scale};
+        return pixelPositon;
+    }
+    Vector2 PixelPositonToGlobalPositon(Vector2 pixelPos, float scale) {}
+    Vector2 ScaleTextureWithMouse() {
+        Vector2 texturePos = {0, 0};
+        return texturePos;
     }
 } // namespace app

@@ -1,6 +1,6 @@
 #include "raylib.h"
 
 namespace app {
-
-    Texture2D CreateBG(int width, int height);
+    Image CreateTransparentImage(int width, int height);
+    Vector2 MousePositionOnTexture(Vector2 texturePos, float scale);
 } // namespace app

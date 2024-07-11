@@ -5,23 +5,36 @@ set(SOURCES
 	# test3.cpp
 
 	main.cpp
-	new_win.cpp
-	draw_win.cpp
+
+	app.cpp
 	app_utils.cpp
-	topbar.cpp
-	import_file.cpp
 	context.cpp
+	draw_win.cpp
+	import_file.cpp
+	main_window.cpp
+	new_win.cpp
+	toolbar.cpp
+	topbar.cpp
+	workspace.cpp
+	workspaces.cpp
+	workspaces_pannel.cpp
 )
 
 set(HEADERS
-	new_win.hpp
-	draw_win.hpp
+	app.hpp
 	app_utils.hpp
-	topbar.hpp
 	context.hpp
+	draw_win.hpp
 	import_file.hpp
+	main_window.hpp
+	new_win.hpp
+	toolbar.hpp
+	topbar.hpp
+	workspace.hpp
+	workspaces.hpp
+	workspaces_pannel.hpp
 )
 
 
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} raylib raygui)

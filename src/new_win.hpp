@@ -11,16 +11,19 @@ namespace app {
 
     class NewWin {
       private:
-        char name[128];
+        float boxWidth;
+        float boxHeight;
+        Vector2 offset;
+        bool isOpen;
+
+        // Form
         int width;
         int height;
-        Vector2 offset;
+        char name[128];
 
         bool nameEditMode;
         bool widthEditMode;
         bool heightEditMode;
-
-        bool open;
 
         bool btnLoadPressed;
         bool btnNewPressed;
@@ -28,6 +31,7 @@ namespace app {
       public:
         NewWin();
         ~NewWin();
-        void Draw();
+        void draw();
+        void open();
     };
 } // namespace app

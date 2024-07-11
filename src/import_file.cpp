@@ -1,4 +1,5 @@
 #include "import_file.hpp"
+#include "context.hpp"
 #include "cstring"
 #include "raygui.h"
 
@@ -76,41 +77,6 @@ namespace app {
                             NULL, &this->heightValue, 0, 8192,
                             this->heightEditMode))
                 this->heightEditMode = !this->heightEditMode;
-            GuiLabel(
-                (Rectangle){this->offset.x + 145, this->offset.y + 130, 30, 25},
-                "pixels");
-            GuiGroupBox((Rectangle){this->offset.x + 10, this->offset.y + 180,
-                                    180, 160},
-                        "Pixel Format");
-            GuiComboBox(
-                (Rectangle){this->offset.x + 20, this->offset.y + 195, 160, 25},
-                TextJoin(context.pixelFormatTextList, 8, ";"),
-                &pixelFormatActive);
-            GuiLine(
-                (Rectangle){this->offset.x + 20, this->offset.y + 220, 160, 20},
-                NULL);
-
-            if (pixelFormatActive != 0)
-                GuiDisable();
-            GuiLabel(
-                (Rectangle){this->offset.x + 20, this->offset.y + 235, 50, 20},
-                "Channels:");
-            GuiToggleGroup((Rectangle){this->offset.x + 20,
-                                       this->offset.y + 255, 156 / 4, 25},
-                           TextJoin(context.channelsTextList, 4, ";"),
-                           &channelsActive);
-            GuiLabel(
-                (Rectangle){this->offset.x + 20, this->offset.y + 285, 50, 20},
-                "Bit Depth:");
-            GuiToggleGroup((Rectangle){this->offset.x + 20,
-                                       this->offset.y + 305, 160 / 3, 25},
-                           TextJoin(context.bitDepthTextList, 3, ";"),
-                           &bitDepthActive);
-            GuiEnable();
-
-            GuiGroupBox(
-                (Rectangle){this->offset.x + 10, this->offset.y + 355, 180, 50},
-                "Header");
             GuiLabel(
                 (Rectangle){this->offset.x + 25, this->offset.y + 370, 27, 25},
                 "Size:");
@@ -203,10 +169,9 @@ namespace app {
                 if (format != -1) {
                     Image image = LoadImage(fileNamePath);
                     Texture2D texture = LoadTextureFromImage(image);
-
-                    Project pr = Project(this->widthValue, this->heightValue,
-                                         this->fileName, "\0", texture);
-                    context.AddProject(pr);
+                    char* locale;
+                    std::strcpy(locale, "\0");
+				// add project
                     open = false;
                     btnLoadPressed = false;
                 }

@@ -1,7 +1,8 @@
-#include "context.hpp"
 #include "raylib.h"
 
 namespace app {
+    class Context;
+    class Project;
 
     class DrawWin {
       private:
@@ -12,7 +13,7 @@ namespace app {
         Image image;
         float scale;
         Vector2 offset;
-        Project project;
+        Project* project;
 
       protected:
         Texture2D textureBg;

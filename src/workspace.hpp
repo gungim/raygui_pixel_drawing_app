@@ -21,6 +21,7 @@ namespace app {
         ~WorkSpace();
         void draw();
         void zoom();
+        void move();
         void setupTexture();
         void close();
     };

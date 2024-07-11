@@ -60,12 +60,22 @@ namespace app {
     void WorkSpace::setupTexture() {}
     void WorkSpace::draw() {
 
-        if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
-            Vector2 delta = GetMouseDelta();
-            delta = Vector2Scale(delta, -1.0f / this->camera.zoom);
-            this->camera.target = Vector2Add(this->camera.target, delta);
-        }
+        this->zoom();
+        this->move();
 
+        BeginMode2D(this->camera);
+        if (this->texture.id != 0) {
+            DrawTextureEx(this->texture, this->offset, this->rotate,
+                          this->scale, BLANK);
+        }
+        DrawTextureRec(this->transBG,
+                       (Rectangle){this->offset.x, this->offset.y,
+                                   (float)this->width, (float)this->height},
+                       this->boxOffset, RED);
+
+        EndMode2D();
+    }
+    void WorkSpace::zoom() {
         float wheel = GetMouseWheelMove();
         if (wheel != 0) {
             // Get the world point that is under the mouse
@@ -87,19 +97,14 @@ namespace app {
             this->camera.zoom =
                 Clamp(this->camera.zoom * scaleFactor, 0.125f, 64.0f);
         }
-        BeginMode2D(this->camera);
-        if (this->texture.id != 0) {
-            DrawTextureEx(this->texture, this->offset, this->rotate,
-                          this->scale, BLANK);
-        }
-        DrawTextureRec(this->transBG,
-                       (Rectangle){this->offset.x, this->offset.y,
-                                   (float)this->width, (float)this->height},
-                       this->boxOffset, RED);
-
-        EndMode2D();
     }
-    void WorkSpace::zoom() {}
+    void WorkSpace::move() {
+        if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+            Vector2 delta = GetMouseDelta();
+            delta = Vector2Scale(delta, -1.0f / this->camera.zoom);
+            this->camera.target = Vector2Add(this->camera.target, delta);
+        }
+    }
     void WorkSpace::close() {};
 
 } // namespace app

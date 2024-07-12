@@ -18,6 +18,7 @@ set(SOURCES
 	workspace.cpp
 	workspaces.cpp
 	workspaces_pannel.cpp
+	template.cpp
 )
 
 set(HEADERS
@@ -33,6 +34,7 @@ set(HEADERS
 	workspace.hpp
 	workspaces.hpp
 	workspaces_pannel.hpp
+	template.hpp
 )
 
 

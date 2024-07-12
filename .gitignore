@@ -23,4 +23,5 @@ _deps
 .DS_Store
 pixel_drawing_app
 
+*.a
 # End of https://www.toptal.com/developers/gitignore/api/cmake

@@ -1,3 +1,4 @@
+#include "raylib.h"
 #include <vector>
 namespace app {
     class WorkSpace;
@@ -20,5 +21,8 @@ namespace app {
         void addPro(WorkSpace* wp);
         void add(int width, int height, char* name);
         void setCurrent(int index);
+        void resize(int width, int height);
+        WorkSpace* getActive();
+        Vector2 getCurrentSize();
     };
 } // namespace app

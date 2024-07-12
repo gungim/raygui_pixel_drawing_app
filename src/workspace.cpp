@@ -11,6 +11,7 @@
 namespace app {
     WorkSpace::WorkSpace() {}
     WorkSpace::~WorkSpace() {
+        delete this->name;
         UnloadTexture(this->transBG);
         UnloadTexture(this->texture);
         UnloadImage(this->image);
@@ -94,5 +95,6 @@ namespace app {
         }
     }
     void WorkSpace::close() {};
+    Vector2 WorkSpace::getSize() { return this->size; }
 
 } // namespace app

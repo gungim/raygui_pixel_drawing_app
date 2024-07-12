@@ -12,13 +12,14 @@ set(SOURCES
 	draw_win.cpp
 	import_file.cpp
 	main_window.cpp
-	new_win.cpp
 	toolbar.cpp
 	topbar.cpp
 	workspace.cpp
 	workspaces.cpp
 	workspaces_pannel.cpp
 	template.cpp
+	win/new_win.cpp
+	win/resize_canvas.cpp
 )
 
 set(HEADERS
@@ -28,13 +29,14 @@ set(HEADERS
 	draw_win.hpp
 	import_file.hpp
 	main_window.hpp
-	new_win.hpp
 	toolbar.hpp
 	topbar.hpp
 	workspace.hpp
 	workspaces.hpp
 	workspaces_pannel.hpp
 	template.hpp
+	win/new_win.hpp
+	win/resize_canvas.hpp
 )
 
 add_subdirectory(ui)

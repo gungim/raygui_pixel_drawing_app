@@ -1,8 +1,8 @@
 #include "new_win.hpp"
+#include "../template.hpp"
+#include "../workspaces.hpp"
 #include "raygui.h"
 #include "raylib.h"
-#include "template.hpp"
-#include "workspaces.hpp"
 
 #include "cstring"
 #include <math.h> // Required for: round()
@@ -15,7 +15,6 @@ namespace app {
 
     NewWin::NewWin() {
         this->size = {400., 350};
-        this->offset = {0, 0};
         this->isOpen = false;
 
         this->width = 32;

@@ -25,5 +25,6 @@ namespace app {
         void move();
         void close();
         void loadTexture(Image img);
+        Vector2 getSize();
     };
 } // namespace app

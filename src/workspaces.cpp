@@ -1,5 +1,6 @@
 #include "workspaces.hpp"
 #include "import_file.hpp"
+#include "raylib.h"
 #include "workspace.hpp"
 #include "workspaces_pannel.hpp"
 
@@ -15,10 +16,10 @@ namespace app {
         this->importFileWindow = new ImportFile();
     }
     WorkSpaces::~WorkSpaces() {
-        m_instance = nullptr;
         this->workspaces.clear();
-        this->activeWorkspace = nullptr;
-        this->workSpacesPannel = nullptr;
+        delete m_instance;
+        delete this->activeWorkspace;
+        delete this->workSpacesPannel;
     }
     void WorkSpaces::draw() {
         if (this->activeWorkspace) {
@@ -44,5 +45,16 @@ namespace app {
         this->workspaces.push_back(wp);
         this->activeWorkspace = wp;
         std::cout << "Add new project";
+    }
+    WorkSpace* WorkSpaces::getActive() { return this->activeWorkspace; }
+    Vector2 WorkSpaces::getCurrentSize() {
+        if (this->activeWorkspace) {
+            return this->activeWorkspace->getSize();
+        } else {
+            return (Vector2){0, 0};
+        }
+    }
+    void WorkSpaces::resize(int w, int h) {
+        this->activeWorkspace->reSize({(float)w, (float)h});
     }
 } // namespace app

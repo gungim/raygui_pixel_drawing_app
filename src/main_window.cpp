@@ -9,7 +9,11 @@ namespace app {
         this->topbar = new TopBar();
         this->toolbar = new Toolbar();
     }
-    MainWindow::~MainWindow() {}
+    MainWindow::~MainWindow() {
+        delete this->workspaces;
+        delete this->toolbar;
+        delete this->toolbar;
+    }
     void MainWindow::draw(Context* context) {
         this->workspaces->draw();
         topbar->draw(context, (Vector2){0, 0});

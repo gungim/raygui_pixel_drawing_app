@@ -102,14 +102,4 @@ namespace app {
             //-----------------------------------------------------------------------
         }
     }
-    void NewWin::open() {
-
-        this->isOpen = true;
-
-        int screenWidth = GetScreenWidth();
-        int screenHeight = GetScreenHeight();
-
-        this->offset = {(float)(screenWidth - this->size.x) / 2,
-                        (float)(screenHeight - this->size.y) / 2};
-    }
 } // namespace app

@@ -1,15 +1,11 @@
-
 #include "raygui.h"
+#include "ui/win_widget.hpp"
 
 namespace app {
     class Templates;
 
-    class NewWin {
+    class NewWin : public ui::WinWidget {
       private:
-        Vector2 size;
-        Vector2 offset;
-        bool isOpen;
-
         // Form
         int width;
         int height;
@@ -29,6 +25,5 @@ namespace app {
         NewWin();
         ~NewWin();
         void draw();
-        void open();
     };
 } // namespace app

@@ -37,6 +37,8 @@ set(HEADERS
 	template.hpp
 )
 
+add_subdirectory(ui)
+
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} raylib raygui)
+target_link_libraries(${PROJECT_NAME} ui-lib)

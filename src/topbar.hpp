@@ -3,6 +3,7 @@
 namespace app {
     class NewWin;
     class Context;
+    class ResizeCanvasWin;
 
     class TopBar {
       private:
@@ -10,6 +11,7 @@ namespace app {
         float height;
 
         NewWin* newWin;
+        ResizeCanvasWin* resizeCanvas;
 
       public:
         TopBar();

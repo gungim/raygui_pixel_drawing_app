@@ -29,8 +29,8 @@ namespace app {
                         (float)(screenH - this->size.y) / 2};
         this->boxOffset = this->offset;
 
-        this->image = LoadImage("/Users/admin/Dev/cmake/"
-                                "raygui_pixel_drawing_app/assets/sample2.png");
+        this->image =
+            GenImageColor(this->boxOffset.x, this->boxOffset.y, BLANK);
         if (this->image.data != NULL) {
             this->texture = LoadTextureFromImage(this->image);
         }

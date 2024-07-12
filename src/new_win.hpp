@@ -1,18 +1,12 @@
 
 #include "raygui.h"
 
-struct DroppedFileConfig {
-    char* pixelFormatTextList[8];
-    char* channelsTextList[4];
-    char* bitDepthTextList[3];
-};
-
 namespace app {
+    class Templates;
 
     class NewWin {
       private:
-        float boxWidth;
-        float boxHeight;
+        Vector2 size;
         Vector2 offset;
         bool isOpen;
 
@@ -20,13 +14,16 @@ namespace app {
         int width;
         int height;
         char name[128];
+        int templateIndex;
 
         bool nameEditMode;
         bool widthEditMode;
         bool heightEditMode;
+        bool templateEdit;
 
         bool btnLoadPressed;
         bool btnNewPressed;
+        Templates* t_instance;
 
       public:
         NewWin();

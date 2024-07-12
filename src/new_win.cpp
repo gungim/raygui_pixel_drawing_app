@@ -1,6 +1,7 @@
 #include "new_win.hpp"
 #include "raygui.h"
 #include "raylib.h"
+#include "template.hpp"
 #include "workspaces.hpp"
 
 #include "cstring"
@@ -13,58 +14,84 @@
 namespace app {
 
     NewWin::NewWin() {
-        this->boxWidth = 200;
-        this->boxHeight = 465;
+        this->size = {400., 350};
         this->offset = {0, 0};
         this->isOpen = false;
 
-        this->width = 124;
-        this->height = 124;
+        this->width = 32;
+        this->height = 32;
         std::strcpy(this->name, "default");
+        this->templateIndex = 2;
 
         this->widthEditMode = false;
         this->nameEditMode = false;
         this->heightEditMode = false;
+        this->templateEdit = false;
+
         this->btnLoadPressed = false;
+        this->t_instance = new Templates();
     }
     NewWin::~NewWin() {}
     void NewWin::draw() {
         if (this->isOpen) {
             this->isOpen =
                 !GuiWindowBox((Rectangle){this->offset.x, this->offset.y,
-                                          this->boxWidth, this->boxHeight},
+                                          this->size.x, this->size.y},
                               "New Project");
 
-            // Size Input
-            GuiGroupBox(
-                (Rectangle){this->offset.x + 10, this->offset.y + 85, 180, 80},
-                "Size");
-            if (GuiValueBox((Rectangle){this->offset.x + 60,
-                                        this->offset.y + 100, 120, 25},
-                            "Width", &this->width, 1, 10000,
-                            this->widthEditMode)) {
-                this->widthEditMode = !this->widthEditMode;
-            }
-            if (GuiValueBox((Rectangle){this->offset.x + 60,
-                                        this->offset.y + 130, 120, 25},
-                            "Height", &this->height, 1, 10000,
-                            this->heightEditMode)) {
-                this->heightEditMode = !this->heightEditMode;
-            }
             //----------------------------------------------------------------------
             // Name Input
             GuiLabel(
-                (Rectangle){this->offset.x + 10, this->offset.y + 170, 33, 25},
-                "Name");
-            if (GuiTextBox((Rectangle){this->offset.x + 10,
-                                       this->offset.y + 190, 180, 25},
+                (Rectangle){this->offset.x + 10, this->offset.y + 70, 80, 25},
+                "Project name");
+            if (GuiTextBox((Rectangle){this->offset.x + 80 + 10,
+                                       this->offset.y + 70,
+                                       this->size.x - 20 - 80, 25},
                            this->name, 128, this->nameEditMode)) {
                 this->nameEditMode = !this->nameEditMode;
             }
+
+            //----------------------------------------------------------------------
+            // Size Input
+            GuiGroupBox((Rectangle){this->offset.x + 10, this->offset.y + 110,
+                                    this->size.x - 20, 90},
+                        "Size");
+            //----------------------------------------------------------------------
+            if (GuiValueBox((Rectangle){this->offset.x + 60,
+                                        this->offset.y + 110 + 10, 120, 25},
+                            "Width", &this->width, 1, 10000,
+                            this->widthEditMode)) {
+                this->templateIndex = 0;
+                this->widthEditMode = !this->widthEditMode;
+            }
+            if (GuiValueBox((Rectangle){this->offset.x + 60,
+                                        this->offset.y + 110 + 40, 120, 25},
+                            "Height", &this->height, 1, 10000,
+                            this->heightEditMode)) {
+                this->templateIndex = 0;
+                this->heightEditMode = !this->heightEditMode;
+            }
+
+            GuiLabel((Rectangle){this->offset.x + 200,
+                                 this->offset.y + 110 + 10, 180, 25},
+                     "Template");
+            if (GuiDropdownBox((Rectangle){this->offset.x + 200,
+                                           this->offset.y + 110 + 40, 180, 25},
+                               this->t_instance->tplsStr, &this->templateIndex,
+                               this->templateEdit)) {
+                Template tp =
+                    this->t_instance->getList().at(this->templateIndex);
+
+                this->width = tp.size.x;
+                this->height = tp.size.y;
+
+                this->templateEdit = !this->templateEdit;
+            }
             //----------------------------------------------------------------------
             // Submit button
-            if (GuiButton((Rectangle){this->offset.x + 10, this->offset.y + 225,
-                                      180, 25},
+            if (GuiButton((Rectangle){this->offset.x + 10,
+                                      this->offset.y + this->size.y - 30,
+                                      this->size.x - 20, 25},
                           "New")) {
                 WorkSpaces* wps = WorkSpaces::instance();
                 wps->add(this->width, this->height, this->name);
@@ -80,7 +107,7 @@ namespace app {
         int screenWidth = GetScreenWidth();
         int screenHeight = GetScreenHeight();
 
-        this->offset = {(float)(screenWidth - this->boxWidth) / 2,
-                        (float)(screenHeight - this->boxHeight) / 2};
+        this->offset = {(float)(screenWidth - this->size.x) / 2,
+                        (float)(screenHeight - this->size.y) / 2};
     }
 } // namespace app

@@ -6,23 +6,24 @@ namespace app {
         Texture2D texture;
         Texture2D transBG;
         Vector2 offset;
-        int width;
-        int height;
+        Vector2 size;
         char* name;
 
         float scale;
         float rotate;
         Vector2 boxOffset;
         Camera2D camera;
+        Image image;
 
       public:
         WorkSpace();
-        WorkSpace(int w, int h, char* n);
         ~WorkSpace();
+        void initialize();
+        void reSize(Vector2 s);
         void draw();
         void zoom();
         void move();
-        void setupTexture();
         void close();
+        void loadTexture(Image img);
     };
 } // namespace app

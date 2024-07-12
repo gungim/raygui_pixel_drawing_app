@@ -32,12 +32,15 @@ namespace app {
         }
     }
     void WorkSpaces::addPro(WorkSpace* wp) {
+        wp->initialize();
         this->workspaces.push_back(wp);
         this->activeWorkspace = wp;
         std::cout << "Add workspace success" << std::endl;
     }
     void WorkSpaces::add(int w, int h, char* name) {
-        WorkSpace* wp = new WorkSpace(w, h, name);
+        WorkSpace* wp = new WorkSpace();
+        wp->reSize({(float)w, (float)h});
+        wp->initialize();
         this->workspaces.push_back(wp);
         this->activeWorkspace = wp;
         std::cout << "Add new project";

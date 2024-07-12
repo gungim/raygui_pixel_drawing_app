@@ -9,69 +9,57 @@
 #include <cmath>
 
 namespace app {
-    WorkSpace::WorkSpace() {
-        int screenW = GetScreenWidth();
-        int screenH = GetScreenHeight();
-
-        this->camera = {0};
-        this->camera.zoom = 1.0f;
-
-        this->texture = {0};
-        this->scale = 3;
-        this->rotate = 0;
-
-        this->width = 32;
-        this->height = 32;
-
-        this->offset = {(float)(screenW - this->width) / 2,
-                        (float)(screenH - this->height) / 2};
-        this->boxOffset = this->offset;
-
-        Image transIMG = CreateTransparentImage(screenW, screenH);
-        this->transBG = LoadTextureFromImage(transIMG);
-        UnloadImage(transIMG);
-    }
-    WorkSpace::WorkSpace(int w, int h, char* n) {
-        int screenW = GetScreenWidth();
-        int screenH = GetScreenHeight();
-
-        this->camera = {0};
-        this->camera.zoom = 1.0f;
-
-        this->texture = {0};
-        this->scale = 3;
-        this->rotate = 0;
-
-        this->width = w;
-        this->height = h;
-
-        this->offset = {(float)(screenW - this->width) / 2,
-                        (float)(screenH - this->height) / 2};
-        this->boxOffset = this->offset;
-
-        Image transIMG = CreateTransparentImage(screenW, screenH);
-        this->transBG = LoadTextureFromImage(transIMG);
-        UnloadImage(transIMG);
-    }
+    WorkSpace::WorkSpace() {}
     WorkSpace::~WorkSpace() {
         UnloadTexture(this->transBG);
         UnloadTexture(this->texture);
+        UnloadImage(this->image);
     }
-    void WorkSpace::setupTexture() {}
+    void WorkSpace::reSize(Vector2 s) { this->size = s; }
+    void WorkSpace::loadTexture(Image img) {
+        this->texture = LoadTextureFromImage(img);
+    }
+    void WorkSpace::initialize() {
+        int screenW = GetScreenWidth();
+        int screenH = GetScreenHeight();
+
+        this->camera.zoom = 1.0f;
+
+        this->offset = {(float)(screenW - this->size.x) / 2,
+                        (float)(screenH - this->size.y) / 2};
+        this->boxOffset = this->offset;
+
+        this->image = LoadImage("/Users/admin/Dev/cmake/"
+                                "raygui_pixel_drawing_app/assets/sample2.png");
+        if (this->image.data != NULL) {
+            this->texture = LoadTextureFromImage(this->image);
+        }
+
+        Image transIMG = CreateTransparentImage(screenW, screenH);
+        this->transBG = LoadTextureFromImage(transIMG);
+        UnloadImage(transIMG);
+    }
     void WorkSpace::draw() {
 
         this->zoom();
         this->move();
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            Vector2 position =
+                GetScreenToWorld2D(GetMousePosition(), this->camera);
+            Vector2 pixelPos = {position.x - this->boxOffset.x,
+                                position.y - this->boxOffset.y};
+            ImageDrawPixel(&this->image, (int)pixelPos.x, (int)pixelPos.y, RED);
+            UpdateTexture(this->texture, this->image.data);
+        }
 
         BeginMode2D(this->camera);
-        if (this->texture.id != 0) {
-            DrawTextureEx(this->texture, this->offset, this->rotate,
-                          this->scale, BLANK);
-        }
         DrawTextureRec(this->transBG,
-                       (Rectangle){this->offset.x, this->offset.y,
-                                   (float)this->width, (float)this->height},
-                       this->boxOffset, RED);
+                       (Rectangle){this->offset.x, this->offset.y, this->size.x,
+                                   this->size.y},
+                       this->boxOffset, Fade(WHITE, 0.5f));
+
+        DrawTexture(this->texture, this->boxOffset.x, this->boxOffset.y,
+                    Fade(WHITE, 1.f));
 
         EndMode2D();
     }

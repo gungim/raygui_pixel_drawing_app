@@ -72,21 +72,6 @@ namespace app {
                 this->heightEditMode = !this->heightEditMode;
             }
 
-            GuiLabel((Rectangle){this->offset.x + 200,
-                                 this->offset.y + 110 + 10, 180, 25},
-                     "Template");
-            if (GuiDropdownBox((Rectangle){this->offset.x + 200,
-                                           this->offset.y + 110 + 40, 180, 25},
-                               this->t_instance->tplsStr, &this->templateIndex,
-                               this->templateEdit)) {
-                Template tp =
-                    this->t_instance->getList().at(this->templateIndex);
-
-                this->width = tp.size.x;
-                this->height = tp.size.y;
-
-                this->templateEdit = !this->templateEdit;
-            }
             //----------------------------------------------------------------------
             // Submit button
             if (GuiButton((Rectangle){this->offset.x + 10,
@@ -97,6 +82,23 @@ namespace app {
                 wps->add(this->width, this->height, this->name);
                 this->isOpen = false;
             };
+
+            GuiLabel((Rectangle){this->offset.x + 200,
+                                 this->offset.y + 110 + 10, 180, 25},
+                     "Template");
+            if (GuiDropdownBox((Rectangle){this->offset.x + 200,
+                                           this->offset.y + 110 + 40, 180, 25},
+                               this->t_instance->tplsStr, &this->templateIndex,
+                               this->templateEdit)) {
+                if (this->templateIndex != 0) {
+                    Template tp =
+                        this->t_instance->getList().at(this->templateIndex);
+
+                    this->width = tp.size.x;
+                    this->height = tp.size.y;
+                }
+                this->templateEdit = !this->templateEdit;
+            }
             //-----------------------------------------------------------------------
         }
     }

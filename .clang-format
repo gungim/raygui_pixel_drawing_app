@@ -7,3 +7,4 @@ DerivePointerAlignment: false
 PointerAlignment: Left
 AlignAfterOpenBracket: Align
 NamespaceIndentation: All
+IndentCaseLabels: true

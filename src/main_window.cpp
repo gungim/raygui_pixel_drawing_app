@@ -16,6 +16,7 @@ namespace app {
     }
     void MainWindow::draw(Context* context) {
         this->workspaces->draw();
-        topbar->draw(context, (Vector2){0, 0});
+        this->topbar->draw(context, (Vector2){0, 0});
+        this->toolbar->draw();
     }
 } // namespace app

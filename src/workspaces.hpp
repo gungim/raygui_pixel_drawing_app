@@ -4,6 +4,7 @@ namespace app {
     class WorkSpace;
     class WorkSpacesPannel;
     class ImportFile;
+    class Toolbar;
 
     class WorkSpaces {
       private:

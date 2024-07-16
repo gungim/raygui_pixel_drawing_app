@@ -12,6 +12,7 @@ namespace app {
     void App::init() {
         this->context = new Context();
         this->main_widdow = new MainWindow();
+        GuiLoadIcons("assets/iconset.rgi", true);
     }
 
     void App::run() {

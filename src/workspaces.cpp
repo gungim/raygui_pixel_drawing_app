@@ -1,6 +1,7 @@
 #include "workspaces.hpp"
 #include "import_file.hpp"
 #include "raylib.h"
+#include "toolbar.hpp"
 #include "workspace.hpp"
 #include "workspaces_pannel.hpp"
 

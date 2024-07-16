@@ -24,10 +24,10 @@ namespace app {
                      .mipmaps = 1};
         return img;
     }
-    Vector2 MousePositionOnTexture(Vector2 texturePos, float scale) {
-        Vector2 mousePosition = GetMousePosition();
-        Vector2 pixelPositon = {(mousePosition.x - texturePos.x) / scale,
-                                (mousePosition.y - texturePos.y) / scale};
+    Vector2 MousePositionOnTexture(Vector2 texturePos, float scale,
+                                   Vector2 mousePos) {
+        Vector2 pixelPositon = {(mousePos.x - texturePos.x) / scale,
+                                (mousePos.y - texturePos.y) / scale};
         return pixelPositon;
     }
     Vector2 PixelPositonToGlobalPositon(Vector2 pixelPos, float scale) {}

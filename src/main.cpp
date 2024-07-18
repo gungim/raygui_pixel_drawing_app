@@ -29,6 +29,7 @@ typedef struct Vector2i {
 //------------------------------------------------------------------------------------
 int main() {
     App* newApp = new App();
+    newApp->init();
     newApp->run();
     return 0;
 }

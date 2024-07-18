@@ -14,13 +14,18 @@ namespace app {
 
         float scale;
         float rotate;
-        Vector2 boxOffset;
         Camera2D camera;
         Image image;
 
         Vector2i startPoint;
         Vector2i endPoint;
+        // Brush
         Color color;
+        int thick;
+
+        bool saved;
+
+        bool outlineMode;
 
       public:
         WorkSpace();
@@ -34,10 +39,12 @@ namespace app {
         void loadTexture(Image img);
         Vector2 getSize();
         void control();
-        void paintPixel(Vector2i point);
-        void paintLine(Vector2i start, Vector2i end);
-        void endPaint();
-        void paintCircle(bool circle);
+        void paintPixel(Vector2i point, Color cl);
+        void paintLine(Vector2i start, Vector2i end, Color cl);
+        void paintCircle(Vector2i centerPoint, float radius);
+        void paintEllipse(Vector2i centerPoint);
+        // horizontal and vertical lines
+        void paintLineHV(Color cl);
         Vector2i GetPixelPositionInWorld(Vector2 position);
     };
 } // namespace app

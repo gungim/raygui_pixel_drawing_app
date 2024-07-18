@@ -9,7 +9,6 @@ set(SOURCES
 	app.cpp
 	app_utils.cpp
 	context.cpp
-	draw_win.cpp
 	import_file.cpp
 	main_window.cpp
 	toolbar.cpp
@@ -26,7 +25,6 @@ set(HEADERS
 	app.hpp
 	app_utils.hpp
 	context.hpp
-	draw_win.hpp
 	import_file.hpp
 	main_window.hpp
 	toolbar.hpp
@@ -40,7 +38,7 @@ set(HEADERS
 )
 
 add_subdirectory(ui)
-
+add_subdirectory(libs/rdrawing)
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} ui-lib)
+target_link_libraries(${PROJECT_NAME} ui-lib rdrawing)

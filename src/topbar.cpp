@@ -20,6 +20,7 @@ namespace app {
     void TopBar::draw(Context* context, Vector2 offset) {
         GuiPanel((Rectangle){0, 0, this->width, this->height}, nullptr);
         // New workspace button
+        GuiSetTooltip("Create new project");
         if (GuiButton((Rectangle){5, 4, 24, 24}, "#8#")) {
             this->newWin->open();
         };
@@ -34,8 +35,7 @@ namespace app {
         GuiSetTooltip("Load image");
         // Resize canvas button
         if (GuiButton((Rectangle){(24 + 5) * 3 + 5, 4, 24, 24}, "#32#")) {
-            WorkSpaces* wps = WorkSpaces::instance();
-            Vector2 v = wps->getCurrentSize();
+            Vector2 v = WorkSpaces::instance()->getCurrentSize();
             if (v.x + v.y != 0) {
                 this->resizeCanvas->setForm(v.x, v.y);
                 this->resizeCanvas->open();

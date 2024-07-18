@@ -2,18 +2,21 @@
 
 namespace app {
     class Context;
-    static const int MAX_TOOL = 11;
-    static const char* guiControlText[MAX_TOOL] = {"#108#", // Select area
-                                                   "#19#",  // Hand
-                                                   "#27#",  // COlor picker,
-                                                   "#28#",  // Easer
-                                                   "#29#",  // COlor bucket
-                                                   "#67#",  // Move
-                                                   "#22#",  // Pencil
-                                                   "#133#", // Draw Square
-                                                   "#192#",  // Draw line
-                                                   "#135#", // Draw circle
-                                                   "#220#"};
+    static const int MAX_TOOL = 12;
+    static const char* guiControlText[MAX_TOOL] = {
+        "#108#", // Select area
+        "#19#",  // Hand
+        "#27#",  // COlor picker,
+        "#28#",  // Easer
+        "#29#",  // COlor bucket
+        "#67#",  // Move
+        "#22#",  // Pencil
+        "#133#", // Draw Square
+        "#192#", // Draw line
+        "#135#", // Draw circle
+        "#220#", // Draw elipse
+        "#221#", // Change draw mode
+    };
     typedef enum {
         TOOL_SELECT = 0,
         TOOL_HAND,
@@ -25,7 +28,8 @@ namespace app {
         TOOL_DRAW_SQUARE,
         TOOL_DRAW_LINE,
         TOOL_DRAW_CIRCLE,
-        TOOL_DRAW_ELLIPSE
+        TOOL_DRAW_ELLIPSE,
+        DRAW_MODE
     } TOOL_TYPE; // namespace app
     class Toolbar {
       private:

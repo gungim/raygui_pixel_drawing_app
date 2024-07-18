@@ -12,15 +12,16 @@ namespace app {
     void App::init() {
         this->context = new Context();
         this->main_widdow = new MainWindow();
+
+        SetConfigFlags(FLAG_WINDOW_RESIZABLE); // Window configuration flags
+
+        InitWindow(this->screenSize.x, this->screenSize.y,
+                   "raygui - portable window");
         GuiLoadIcons("assets/iconset.rgi", true);
+        SetTargetFPS(24);
     }
 
     void App::run() {
-        InitWindow(this->screenSize.x, this->screenSize.y,
-                   "raygui - portable window");
-        SetConfigFlags(FLAG_WINDOW_RESIZABLE); // Window configuration flags
-        SetTargetFPS(24);
-        this->init();
 
         while (!WindowShouldClose()) // Detect window close button or ESC key
         {

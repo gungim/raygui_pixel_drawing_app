@@ -33,6 +33,7 @@ namespace app {
     NewWin::~NewWin() {}
     void NewWin::draw() {
         if (this->isOpen) {
+            GuiEnable();
             this->isOpen =
                 !GuiWindowBox((Rectangle){this->offset.x, this->offset.y,
                                           this->size.x, this->size.y},
@@ -98,7 +99,10 @@ namespace app {
                 }
                 this->templateEdit = !this->templateEdit;
             }
+            GuiDisable();
             //-----------------------------------------------------------------------
+        } else {
+            GuiEnable();
         }
     }
 } // namespace app

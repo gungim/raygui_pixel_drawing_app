@@ -4,3 +4,6 @@
 [submodule "libs/raylib"]
 	path = libs/raylib
 	url = https://github.com/raysan5/raylib.git
+[submodule "libs/rdrawing"]
+	path = libs/rdrawing
+	url = git@github.com:gungim/raylib-drawing.git

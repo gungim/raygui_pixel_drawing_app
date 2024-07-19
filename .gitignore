@@ -21,7 +21,6 @@ _deps
 .cache
 .cmake
 .DS_Store
-pixel_drawing_app
 
-*.a
+out
 # End of https://www.toptal.com/developers/gitignore/api/cmake

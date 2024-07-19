@@ -38,9 +38,8 @@ set(HEADERS
 )
 
 add_subdirectory(ui)
-add_subdirectory(libs/rdrawing)
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
 target_link_libraries(${PROJECT_NAME}
 	ui-lib
-	rdrawing)
+)

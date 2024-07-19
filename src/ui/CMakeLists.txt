@@ -4,4 +4,5 @@ add_library(ui-lib
 
 target_link_libraries(ui-lib
 	raylib
-	raygui)
+	raygui
+)

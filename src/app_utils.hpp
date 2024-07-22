@@ -9,4 +9,5 @@ namespace app {
     Image CreateTransparentImage(int width, int height);
     Vector2 MousePositionOnTexture(Vector2 texturePos, float scale,
                                    Vector2 mousePos);
+    int CListItem(const char* text, Vector2i pos, Vector2i size, int& active);
 } // namespace app

@@ -25,7 +25,6 @@ namespace app {
 
         bool saved;
 
-        bool outlineMode;
 
       public:
         WorkSpace();
@@ -41,8 +40,8 @@ namespace app {
         void control();
         void paintPixel(Vector2i point, Color cl);
         void paintLine(Vector2i start, Vector2i end, Color cl);
-        void paintCircle(Vector2i centerPoint, float radius);
-        void paintEllipse(Vector2i centerPoint);
+        void paintCircle(Vector2i centerPoint, int radius);
+        void paintEllipse(Vector2i centerPoint, int radiusX, int radiusY);
         // horizontal and vertical lines
         void paintLineHV(Color cl);
         Vector2i GetPixelPositionInWorld(Vector2 position);

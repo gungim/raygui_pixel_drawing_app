@@ -42,4 +42,6 @@ add_subdirectory(ui)
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
 target_link_libraries(${PROJECT_NAME}
 	ui-lib
+	rdrawing
+	raygui
 )

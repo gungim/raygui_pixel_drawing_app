@@ -1,7 +1,4 @@
 #include "workspace.hpp"
-// #include "libs/rdrawing/rdrawing.h"
-#include "raygui.h"
-#include "raylib.h"
 #include "raymath.h"
 #include "rdrawing.h"
 #include "rlgl.h"
@@ -16,7 +13,6 @@ namespace app {
     WorkSpace::WorkSpace() {
         this->color = RED;
         this->saved = false;
-        this->outlineMode = false;
         this->thick = 2;
     }
     WorkSpace::~WorkSpace() {
@@ -126,6 +122,14 @@ namespace app {
                         this->paintLineHV(BLANK);
                         break;
                     }
+                    case TOOL_DRAW_CIRCLE: {
+                        float radius = Vector2Distance(
+                            {(float)this->startPoint.x,
+                             (float)this->startPoint.y},
+                            {(float)this->endPoint.x, (float)this->endPoint.y});
+                        this->paintCircle(this->startPoint, radius);
+                        break;
+                    }
                 }
             } else {
                 switch (currentTool) {
@@ -135,12 +139,10 @@ namespace app {
                         break;
                     }
                     case TOOL_DRAW_CIRCLE: {
-                        float radius = Vector2Distance(
-                            {(float)this->startPoint.x,
-                             (float)this->startPoint.y},
-                            {(float)this->endPoint.x, (float)this->endPoint.y});
-                        this->paintCircle(this->startPoint, radius);
-                        break;
+                        float radiusX = this->endPoint.x - this->startPoint.x;
+                        float radiusY = this->endPoint.y - this->startPoint.y;
+                        this->paintEllipse(this->startPoint, abs(radiusX),
+                                           abs(radiusY));
                     }
                     case TOOL_EASER: {
                         this->paintLine(this->startPoint, this->endPoint,
@@ -156,8 +158,8 @@ namespace app {
         UpdateTexture(this->texture, this->image.data);
     }
     void WorkSpace::paintLine(Vector2i start, Vector2i end, Color cl) {
-        ImageDrawLineEx(&this->image, {(float)start.x, (float)start.y},
-                        {(float)end.x, (float)end.y}, (float)this->thick, cl);
+        ImageDrawLineEx2(&this->image, start.x, start.y, end.x, end.y,
+                         this->thick, cl);
         UpdateTexture(this->texture, this->image.data);
     }
     void WorkSpace::paintLineHV(Color cl) {
@@ -177,17 +179,27 @@ namespace app {
         this->paintLine(this->startPoint, end, cl);
     }
 
-    void WorkSpace::paintCircle(Vector2i centerPoint, float radius) {
-        if (this->outlineMode) {
-            ImageDrawCircleLines(&this->image, centerPoint.x, centerPoint.y,
-                                 radius, this->color);
+    void WorkSpace::paintCircle(Vector2i centerPoint, int radius) {
+        if (Toolbar::instance()->getOutlineMode()) {
+            ImageDrawCircleEx(&this->image, centerPoint.x, centerPoint.y,
+                              radius, this->thick, this->color);
         } else {
             ImageDrawCircle(&this->image, centerPoint.x, centerPoint.y, radius,
                             this->color);
         }
         UpdateTexture(this->texture, this->image.data);
     }
-    void WorkSpace::paintEllipse(Vector2i centerPoint) {}
+    void WorkSpace::paintEllipse(Vector2i centerPoint, int radiusX,
+                                 int radiusY) {
+        if (Toolbar::instance()->getOutlineMode()) {
+            ImageDrawEllipseEx(&this->image, centerPoint.x, centerPoint.y,
+                               radiusX, radiusY, this->thick, this->color);
+        } else {
+            ImageFillEllipseEx(&this->image, centerPoint.x, centerPoint.y,
+                               radiusX, radiusY, this->color);
+        }
+        UpdateTexture(this->texture, this->image.data);
+    }
 
     void WorkSpace::close() {};
     Vector2 WorkSpace::getSize() { return this->size; }

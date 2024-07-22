@@ -12,11 +12,9 @@
  *   Copyright (c) 2019 Anata (@anatagawa) and Ramon Santamaria (@raysan5)
  *
  ********************************************************************************************/
+
 #include "app.hpp"
 
-#define RAYGUI_IMPLEMENTATION
-#define RAYGUI_SUPPORT_ICONS
-#include "raygui.h"
 
 using namespace app;
 typedef struct Vector2i {

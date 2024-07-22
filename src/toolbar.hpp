@@ -2,7 +2,7 @@
 
 namespace app {
     class Context;
-    static const int MAX_TOOL = 12;
+    static const int MAX_TOOL = 11;
     static const char* guiControlText[MAX_TOOL] = {
         "#108#", // Select area
         "#19#",  // Hand
@@ -10,12 +10,11 @@ namespace app {
         "#28#",  // Easer
         "#29#",  // COlor bucket
         "#67#",  // Move
-        "#22#",  // Pencil
+        "#23#",  // Pencil
         "#133#", // Draw Square
         "#192#", // Draw line
         "#135#", // Draw circle
         "#220#", // Draw elipse
-        "#221#", // Change draw mode
     };
     typedef enum {
         TOOL_SELECT = 0,
@@ -37,6 +36,8 @@ namespace app {
         Vector2 size;
         int selectedTool;
         int scrollIndex;
+        int outlineMode;
+
         static Toolbar* m_instance;
 
       public:
@@ -44,6 +45,7 @@ namespace app {
         ~Toolbar();
         void draw();
         int getCurrentTool();
+        bool getOutlineMode();
         static Toolbar* instance() { return m_instance; }
     };
 } // namespace app

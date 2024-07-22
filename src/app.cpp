@@ -1,6 +1,7 @@
 #include "app.hpp"
 #include "context.hpp"
 #include "main_window.hpp"
+
 #include "raygui.h"
 
 namespace app {
@@ -14,10 +15,11 @@ namespace app {
         this->main_widdow = new MainWindow();
 
         SetConfigFlags(FLAG_WINDOW_RESIZABLE); // Window configuration flags
+        GuiLoadStyleDefault();
+        GuiLoadIcons("/Users/admin/Dev/cmake/raygui_pixel_drawing_app2/assets/iconset.rgi", true);
 
         InitWindow(this->screenSize.x, this->screenSize.y,
                    "raygui - portable window");
-        GuiLoadIcons("assets/iconset.rgi", true);
         SetTargetFPS(24);
     }
 

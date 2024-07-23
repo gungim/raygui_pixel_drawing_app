@@ -8,7 +8,7 @@
 
 #include "iostream"
 
-namespace app {
+namespace utils {
     Image CreateTransparentImage(int width, int height) {
 
         Color* pixels = (Color*)malloc(width * height * sizeof(Color));
@@ -106,4 +106,4 @@ namespace app {
         return result;
     }
 
-} // namespace app
+} // namespace utils

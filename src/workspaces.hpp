@@ -1,5 +1,7 @@
-#include "raylib.h"
+#include "utils/app_utils.hpp"
 #include <vector>
+
+using namespace utils;
 namespace app {
     class WorkSpace;
     class WorkSpacesPannel;
@@ -10,9 +12,11 @@ namespace app {
       private:
         std::vector<WorkSpace*> workspaces;
         WorkSpace* activeWorkspace;
+        int activeWorkspaceIndex;
         WorkSpacesPannel* workSpacesPannel;
         ImportFile* importFileWindow;
         static WorkSpaces* m_instance;
+        const char** tabList;
 
       public:
         WorkSpaces();
@@ -24,6 +28,6 @@ namespace app {
         void setCurrent(int index);
         void resize(int width, int height);
         WorkSpace* getActive();
-        Vector2 getCurrentSize();
+        utils::Vector2i getCurrentSize();
     };
 } // namespace app

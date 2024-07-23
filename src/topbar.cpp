@@ -35,7 +35,7 @@ namespace app {
         GuiSetTooltip("Load image");
         // Resize canvas button
         if (GuiButton((Rectangle){(24 + 5) * 3 + 5, 4, 24, 24}, "#32#")) {
-            Vector2 v = WorkSpaces::instance()->getCurrentSize();
+            Vector2i v = WorkSpaces::instance()->getCurrentSize();
             if (v.x + v.y != 0) {
                 this->resizeCanvas->setForm(v.x, v.y);
                 this->resizeCanvas->open();

@@ -1,16 +1,23 @@
-#include "app_utils.hpp"
 #include "raylib.h"
+#include "utils/app_utils.hpp"
 
+using namespace utils;
 namespace app {
     class Toolbar;
+    class LayerPannel;
+
+    struct WPConfig {
+        Vector2 offset;
+        Vector2i size;
+        char* name;
+    };
 
     class WorkSpace {
       private:
         Texture2D texture;
         Texture2D transBG;
-        Vector2 offset;
-        Vector2 size;
-        char* name;
+        WPConfig* config;
+        LayerPannel* l_pannel;
 
         float scale;
         float rotate;
@@ -25,18 +32,17 @@ namespace app {
 
         bool saved;
 
-
       public:
-        WorkSpace();
+        WorkSpace(Vector2i s);
         ~WorkSpace();
         void initialize();
-        void reSize(Vector2 s);
+        void resize(Vector2i s);
         void draw();
         void zoom();
         void move();
         void close();
         void loadTexture(Image img);
-        Vector2 getSize();
+        Vector2i getSize();
         void control();
         void paintPixel(Vector2i point, Color cl);
         void paintLine(Vector2i start, Vector2i end, Color cl);

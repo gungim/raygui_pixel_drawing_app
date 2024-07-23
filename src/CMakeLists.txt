@@ -7,7 +7,6 @@ set(SOURCES
 	main.cpp
 
 	app.cpp
-	app_utils.cpp
 	context.cpp
 	import_file.cpp
 	main_window.cpp
@@ -19,11 +18,11 @@ set(SOURCES
 	template.cpp
 	win/new_win.cpp
 	win/resize_canvas.cpp
+	layer_pannel.cpp
 )
 
 set(HEADERS
 	app.hpp
-	app_utils.hpp
 	context.hpp
 	import_file.hpp
 	main_window.hpp
@@ -35,13 +34,17 @@ set(HEADERS
 	template.hpp
 	win/new_win.hpp
 	win/resize_canvas.hpp
+	layer_pannel.hpp
 )
 
 add_subdirectory(ui)
+add_subdirectory(utils)
+
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
 target_link_libraries(${PROJECT_NAME}
 	ui-lib
+	util-lib
 	rdrawing
 	raygui
 )

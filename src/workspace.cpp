@@ -1,4 +1,5 @@
 #include "workspace.hpp"
+#include "layer_pannel.hpp"
 #include "raymath.h"
 #include "rdrawing.h"
 #include "rlgl.h"
@@ -10,18 +11,24 @@
 #include <cstdlib>
 
 namespace app {
-    WorkSpace::WorkSpace() {
+    WorkSpace::WorkSpace(Vector2i s) {
         this->color = RED;
         this->saved = false;
         this->thick = 2;
+        this->l_pannel = new LayerPannel(this->config);
+        this->config->size = s;
     }
     WorkSpace::~WorkSpace() {
-        delete this->name;
+        delete this->config;
+        delete this->l_pannel;
         UnloadTexture(this->transBG);
         UnloadTexture(this->texture);
         UnloadImage(this->image);
     }
-    void WorkSpace::reSize(Vector2 s) { this->size = s; }
+    void WorkSpace::resize(Vector2i s) {
+        this->config->size = s;
+        this->l_pannel->resize();
+    }
     void WorkSpace::loadTexture(Image img) {
         this->texture = LoadTextureFromImage(img);
     }
@@ -30,11 +37,12 @@ namespace app {
         int screenH = GetScreenHeight();
 
         this->camera.zoom = 1.0f;
+        Vector2i size = this->config->size;
 
-        this->offset = {(float)(screenW - this->size.x) / 2,
-                        (float)(screenH - this->size.y) / 2};
+        this->config->offset = {(float)(screenW - size.x) / 2,
+                                (float)(screenH - size.y) / 2};
 
-        this->image = GenImageColor(this->size.x, this->size.y, BLANK);
+        this->image = GenImageColor(size.x, size.y, BLANK);
         if (this->image.data != NULL) {
             this->texture = LoadTextureFromImage(this->image);
         }
@@ -48,13 +56,15 @@ namespace app {
 
         BeginMode2D(this->camera);
         DrawTextureRec(this->transBG,
-                       (Rectangle){this->offset.x, this->offset.y, this->size.x,
-                                   this->size.y},
-                       this->offset, Fade(WHITE, 0.5f));
-        DrawTexture(this->texture, this->offset.x, this->offset.y,
-                    Fade(WHITE, 1.f));
+                       (Rectangle){this->config->offset.x,
+                                   this->config->offset.y,
+                                   (float)this->config->size.x,
+                                   (float)this->config->size.y},
+                       this->config->offset, Fade(WHITE, 0.5f));
+        DrawTextureV(this->texture, this->config->offset, Fade(WHITE, 1.f));
 
         EndMode2D();
+        this->l_pannel->draw();
     }
     void WorkSpace::zoom() {
         float wheel = GetMouseWheelMove();
@@ -202,11 +212,12 @@ namespace app {
     }
 
     void WorkSpace::close() {};
-    Vector2 WorkSpace::getSize() { return this->size; }
+    Vector2i WorkSpace::getSize() { return this->config->size; }
 
     Vector2i WorkSpace::GetPixelPositionInWorld(Vector2 postion) {
         Vector2 mouseInWorkPosition = GetScreenToWorld2D(postion, this->camera);
-        return {(int)mouseInWorkPosition.x - (int)this->offset.x,
-                (int)mouseInWorkPosition.y - (int)this->offset.y};
+        Vector2 offset = this->config->offset;
+        return {(int)mouseInWorkPosition.x - (int)offset.x,
+                (int)mouseInWorkPosition.y - (int)offset.y};
     }
 } // namespace app

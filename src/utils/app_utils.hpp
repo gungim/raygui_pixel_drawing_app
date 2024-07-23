@@ -1,6 +1,11 @@
+#ifndef APP_UTILS
+#define APP_UTILS
+
+/* header information for myfoo.h */
+
 #include "raylib.h"
 
-namespace app {
+namespace utils {
     typedef struct Vector2i {
         int x; // Vector x component
         int y; // Vector y component
@@ -10,4 +15,5 @@ namespace app {
     Vector2 MousePositionOnTexture(Vector2 texturePos, float scale,
                                    Vector2 mousePos);
     int CListItem(const char* text, Vector2i pos, Vector2i size, int& active);
-} // namespace app
+} // namespace utils
+#endif

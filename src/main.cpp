@@ -17,10 +17,6 @@
 
 
 using namespace app;
-typedef struct Vector2i {
-    int x; // Vector x component
-    int y; // Vector y component
-} Vector2i;
 
 //------------------------------------------------------------------------------------
 // Program main entry point

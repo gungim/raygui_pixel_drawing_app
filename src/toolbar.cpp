@@ -1,7 +1,7 @@
 #include "toolbar.hpp"
-#include "app_utils.hpp"
 #include "raygui.h"
 #include "raylib.h"
+#include "utils/app_utils.hpp"
 
 namespace app {
     Toolbar* Toolbar::m_instance = nullptr;
@@ -25,8 +25,9 @@ namespace app {
                     TextJoin(guiControlText, MAX_TOOL, ";"), &this->scrollIndex,
                     &this->selectedTool);
 
-        CListItem("#221#", {(int)this->offset.x, (int)this->size.y + 32 + 2},
-                  {32, 32}, this->outlineMode);
+        utils::CListItem("#221#",
+                         {(int)this->offset.x, (int)this->size.y + 32 + 2},
+                         {32, 32}, this->outlineMode);
     }
     int Toolbar::getCurrentTool() { return this->selectedTool; }
     bool Toolbar::getOutlineMode() { return this->outlineMode; }

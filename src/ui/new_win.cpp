@@ -1,6 +1,6 @@
 #include "new_win.hpp"
-#include "../template.hpp"
-#include "../workspaces.hpp"
+#include "../app/template.hpp"
+#include "../app/workspaces.hpp"
 #include "raygui.h"
 #include "raylib.h"
 

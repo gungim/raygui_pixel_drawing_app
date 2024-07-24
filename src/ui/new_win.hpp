@@ -1,4 +1,4 @@
-#include "../ui/win_widget.hpp"
+#include "win_widget.hpp"
 
 namespace app {
     class Templates;

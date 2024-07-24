@@ -3,7 +3,7 @@
 #include "raymath.h"
 #include "rdrawing.h"
 #include "rlgl.h"
-#include "tool/tool.hpp"
+#include "../tool/tool.hpp"
 #include "toolbar.hpp"
 
 #include "iostream"

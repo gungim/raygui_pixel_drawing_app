@@ -1,7 +1,7 @@
 #include "toolbar.hpp"
 #include "raygui.h"
 #include "raylib.h"
-#include "utils/app_utils.hpp"
+#include "../utils/app_utils.hpp"
 
 namespace app {
     Toolbar* Toolbar::m_instance = nullptr;

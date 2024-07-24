@@ -1,7 +1,7 @@
 #include "topbar.hpp"
 #include "raygui.h"
-#include "win/new_win.hpp"
-#include "win/resize_canvas.hpp"
+#include "../ui/new_win.hpp"
+#include "../ui/resize_canvas.hpp"
 #include "workspaces.hpp"
 
 namespace app {

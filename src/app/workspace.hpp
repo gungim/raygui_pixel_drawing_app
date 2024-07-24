@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "utils/app_utils.hpp"
+#include "../utils/app_utils.hpp"
 
 using namespace utils;
 namespace app {

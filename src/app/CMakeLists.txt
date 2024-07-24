@@ -1,11 +1,5 @@
 
 set(SOURCES
-	# test2.cpp
-	# test1.cpp
-	# test3.cpp
-
-	main.cpp
-
 	app.cpp
 	context.cpp
 	import_file.cpp
@@ -31,11 +25,15 @@ set(HEADERS
 	layer_pannel.hpp
 )
 
-
-add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
-target_link_libraries(${PROJECT_NAME}
-	ui-lib
-	util-lib
+add_library(app-lib
+	${SOURCES}
+	${HEADERS}
+)
+target_link_libraries(app-lib
 	rdrawing
 	raygui
+	raylib
+
+	ui-lib
+	util-lib
 )

@@ -48,6 +48,10 @@ namespace app {
         utils::CGuiTabBar((Rectangle){0, 32, (float)GetScreenWidth(), 32},
                           (const char**)this->tabList,
                           &this->activeWorkspaceIndex, this->tabCount);
+
+            GuiGroupBox((Rectangle){100, 200,
+                                    180, 90},
+                        "Size");
     }
     void WorkSpaces::setCurrent(int index) {
         if (index < this->workspaces.size()) {

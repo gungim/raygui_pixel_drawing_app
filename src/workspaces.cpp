@@ -4,7 +4,6 @@
 #include "raylib.h"
 #include "toolbar.hpp"
 #include "workspace.hpp"
-#include "workspaces_pannel.hpp"
 
 #include "iostream"
 #include <cstring>
@@ -15,25 +14,40 @@ namespace app {
         m_instance = this;
         this->workspaces = {};
         this->activeWorkspace = nullptr;
-        this->workSpacesPannel = new WorkSpacesPannel();
         this->importFileWindow = new ImportFile();
-        // char** temp = new char*[2];
-        // strcpy(temp[0], "dev 1");
-        // strcpy(temp[1], "dev 2");
-        // this->tabList = (const char**)temp;
+
+        this->allocateTablist();
+    }
+    void WorkSpaces::allocateTablist() {
+        this->tabList = new char*[this->tabCount];
+        for (int i = 0; i < this->tabCount; ++i) {
+            this->tabList[i] = new char[this->tabCount];
+            std::memset(this->tabList[i], 0,
+                        20); // Initialize with null characters
+        }
+    }
+
+    // Helper function to deallocate memory
+    void WorkSpaces::deallocateTablist() {
+        for (int i = 0; i < this->tabCount; ++i) {
+            delete[] this->tabList[i];
+        }
+        delete[] this->tabList;
     }
     WorkSpaces::~WorkSpaces() {
         this->workspaces.clear();
         delete m_instance;
         delete this->activeWorkspace;
-        delete this->workSpacesPannel;
+
+        this->deallocateTablist();
     }
     void WorkSpaces::draw() {
         if (this->activeWorkspace) {
             this->activeWorkspace->draw();
         }
-        // GuiTabBar((Rectangle){0, 32, (float)GetScreenWidth(), 32},
-                  // this->tabList, 10, &this->activeWorkspaceIndex);
+        utils::CGuiTabBar((Rectangle){0, 32, (float)GetScreenWidth(), 32},
+                          (const char**)this->tabList,
+                          &this->activeWorkspaceIndex, this->tabCount);
     }
     void WorkSpaces::setCurrent(int index) {
         if (index < this->workspaces.size()) {

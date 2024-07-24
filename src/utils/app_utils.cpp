@@ -44,7 +44,7 @@ namespace utils {
         return texturePos;
     }
 
-    int CListItem(const char* text, Vector2i pos, Vector2i size, int& active) {
+    int CListItem(const char* text, Vector2i pos, Vector2i size, int* active) {
         int result = 0;
         GuiState state = guiState;
 
@@ -56,7 +56,7 @@ namespace utils {
         bool focus = 0;
 
         if (state == STATE_DISABLED) {
-            if (active) {
+            if (*active) {
                 DrawRectangleLinesEx(
                     itemBounds, GuiGetStyle(LISTVIEW, BORDER_WIDTH),
                     GetColor(GuiGetStyle(LISTVIEW, BORDER_COLOR_DISABLED)));
@@ -68,18 +68,17 @@ namespace utils {
             if (CheckCollisionPointRec(GetMousePosition(), itemBounds)) {
                 focus = true;
                 if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-                    if (active == 0) {
-                        active = 1;
+                    if (*active == 0) {
+                        *active = 1;
                     } else {
-                        active = 0;
+                        *active = 0;
                     }
-                    std::cout << active << std::endl;
                 }
             } else {
                 focus = false;
             }
 
-            if (active) {
+            if (*active) {
 
                 GuiDrawRectangle(
                     itemBounds, GuiGetStyle(LISTVIEW, BORDER_WIDTH),
@@ -100,6 +99,22 @@ namespace utils {
                 GuiDrawText(text, itemBounds,
                             GuiGetStyle(LISTVIEW, TEXT_ALIGNMENT),
                             GetColor(GuiGetStyle(LISTVIEW, TEXT_COLOR_NORMAL)));
+            }
+        }
+
+        return result;
+    }
+    int CGuiTabBar(Rectangle bounds, const char** tabNames, int* active,
+                  int count) {
+        // This function should render the tab bar and return the index of the
+        // active tab
+        int result = 0;
+        for (int i = 0; i < count; i++) {
+            if (GuiButton((Rectangle){bounds.x + i * (bounds.width / count),
+                                      bounds.y, bounds.width / count,
+                                      bounds.height},
+                          tabNames[i])) {
+                *active = i;
             }
         }
 

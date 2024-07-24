@@ -14,9 +14,13 @@ namespace app {
         WorkSpace* activeWorkspace;
         int activeWorkspaceIndex;
         WorkSpacesPannel* workSpacesPannel;
+
         ImportFile* importFileWindow;
         static WorkSpaces* m_instance;
-        const char** tabList;
+        char** tabList;
+        int tabCount;
+        void allocateTablist();
+        void deallocateTablist();
 
       public:
         WorkSpaces();

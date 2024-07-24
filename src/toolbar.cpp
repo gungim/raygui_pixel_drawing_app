@@ -27,7 +27,7 @@ namespace app {
 
         utils::CListItem("#221#",
                          {(int)this->offset.x, (int)this->size.y + 32 + 2},
-                         {32, 32}, this->outlineMode);
+                         {32, 32}, &this->outlineMode);
     }
     int Toolbar::getCurrentTool() { return this->selectedTool; }
     bool Toolbar::getOutlineMode() { return this->outlineMode; }

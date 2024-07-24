@@ -14,7 +14,6 @@ set(SOURCES
 	topbar.cpp
 	workspace.cpp
 	workspaces.cpp
-	workspaces_pannel.cpp
 	template.cpp
 	win/new_win.cpp
 	win/resize_canvas.cpp
@@ -30,7 +29,6 @@ set(HEADERS
 	topbar.hpp
 	workspace.hpp
 	workspaces.hpp
-	workspaces_pannel.hpp
 	template.hpp
 	win/new_win.hpp
 	win/resize_canvas.hpp

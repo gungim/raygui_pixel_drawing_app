@@ -1,20 +1,17 @@
 #include "toolbar.hpp"
 #include "raygui.h"
 #include "raylib.h"
-#include "../utils/app_utils.hpp"
 
 namespace app {
+
     Toolbar* Toolbar::m_instance = nullptr;
     Toolbar::Toolbar() {
-        this->offset = {2, 32};
-        this->size = {32, ((float)GuiGetStyle(LISTVIEW, LIST_ITEMS_HEIGHT) +
-                           GuiGetStyle(LISTVIEW, LIST_ITEMS_SPACING) +
-                           GuiGetStyle(LISTVIEW, BORDER_WIDTH)) *
-                              MAX_TOOL};
+        this->offset = {2, 64};
+        this->size = {32, 32 * (MAX_TOOL)};
         this->scrollIndex = 0;
 
         this->selectedTool = 0;
-        this->outlineMode = 0;
+        this->outlineMode = false;
         m_instance = this;
     };
 
@@ -25,9 +22,9 @@ namespace app {
                     TextJoin(guiControlText, MAX_TOOL, ";"), &this->scrollIndex,
                     &this->selectedTool);
 
-        utils::CListItem("#221#",
-                         {(int)this->offset.x, (int)this->size.y + 32 + 2},
-                         {32, 32}, &this->outlineMode);
+        GuiToggle(
+            (Rectangle){this->offset.x, this->size.y + this->offset.y + 2},
+            "#221#", &this->outlineMode);
     }
     int Toolbar::getCurrentTool() { return this->selectedTool; }
     bool Toolbar::getOutlineMode() { return this->outlineMode; }

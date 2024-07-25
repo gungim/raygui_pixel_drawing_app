@@ -1,3 +1,6 @@
+#ifndef APP_TEMPLATE_H_INCLUDED
+#define APP_TEMPLATE_H_INCLUDED
+
 #include "raylib.h"
 #include <vector>
 
@@ -17,3 +20,4 @@ namespace app {
         std::vector<Template> getList();
     };
 } // namespace app
+#endif // !APP_TEMPLATE_H_INCLUDED

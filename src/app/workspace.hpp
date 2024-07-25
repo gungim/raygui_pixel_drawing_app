@@ -1,8 +1,11 @@
-#include "raylib.h"
-#include "../utils/app_utils.hpp"
+#ifndef APP_WP_H_INCLUDED
+#define APP_WP_H_INCLUDED
 
-using namespace utils;
+#include "raylib.h"
+#include "utils.hpp"
+
 namespace app {
+    using namespace utils;
     class Toolbar;
     class LayerPannel;
 
@@ -53,3 +56,5 @@ namespace app {
         Vector2i GetPixelPositionInWorld(Vector2 position);
     };
 } // namespace app
+//
+#endif // !APP_WP_H_INCLUDED

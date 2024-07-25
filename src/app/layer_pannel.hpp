@@ -1,8 +1,12 @@
-#include "../utils/app_utils.hpp"
+#ifndef APP_LAYER_PANNEL_H_INCLUDED
+#define APP_LAYER_PANNEL_H_INCLUDED
+
 #include "raylib.h"
+#include "utils.hpp"
 #include <vector>
-using namespace utils;
+
 namespace app {
+    using namespace utils;
     struct Sprite {
         Image* image;
     };
@@ -39,3 +43,5 @@ namespace app {
         void resize();
     };
 } // namespace app
+//
+#endif // !APP_LAYER_PANNEL_H_INCLUDED

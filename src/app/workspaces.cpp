@@ -1,9 +1,9 @@
 #include "workspaces.hpp"
 #include "import_file.hpp"
-#include "raygui.h"
 #include "raylib.h"
 #include "toolbar.hpp"
 #include "workspace.hpp"
+
 
 #include "iostream"
 #include <cstring>
@@ -43,15 +43,13 @@ namespace app {
     }
     void WorkSpaces::draw() {
         if (this->activeWorkspace) {
-            this->activeWorkspace->draw();
+            // this->activeWorkspace->draw();
         }
-        utils::CGuiTabBar((Rectangle){0, 32, (float)GetScreenWidth(), 32},
-                          (const char**)this->tabList,
-                          &this->activeWorkspaceIndex, this->tabCount);
+        // c_ui::CGuiTabBar((Rectangle){0, 32, (float)GetScreenWidth(), 32},
+                         // (const char**)this->tabList,
+                         // &this->activeWorkspaceIndex, this->tabCount);
 
-            GuiGroupBox((Rectangle){100, 200,
-                                    180, 90},
-                        "Size");
+        GuiGroupBox((Rectangle){100, 200, 180, 90}, "Size");
     }
     void WorkSpaces::setCurrent(int index) {
         if (index < this->workspaces.size()) {

@@ -1,9 +1,9 @@
 #include "workspace.hpp"
+#include "../tool/tool.hpp"
 #include "layer_pannel.hpp"
 #include "raymath.h"
 #include "rdrawing.h"
 #include "rlgl.h"
-#include "../tool/tool.hpp"
 #include "toolbar.hpp"
 
 #include "iostream"
@@ -47,7 +47,7 @@ namespace app {
             this->texture = LoadTextureFromImage(this->image);
         }
 
-        Image transIMG = CreateTransparentImage(screenW, screenH);
+        Image transIMG = utils::CreateTransparentImage(screenW, screenH);
         this->transBG = LoadTextureFromImage(transIMG);
         UnloadImage(transIMG);
     }

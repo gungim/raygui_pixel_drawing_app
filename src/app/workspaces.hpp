@@ -1,8 +1,12 @@
-#include "../utils/app_utils.hpp"
+#ifndef APP_WPS_H_INCLUDED
+#define APP_WPS_H_INCLUDED
+
+#include "raygui.h"
+#include "utils.hpp"
 #include <vector>
 
-using namespace utils;
 namespace app {
+    using namespace utils;
     class WorkSpace;
     class WorkSpacesPannel;
     class ImportFile;
@@ -32,6 +36,7 @@ namespace app {
         void setCurrent(int index);
         void resize(int width, int height);
         WorkSpace* getActive();
-        utils::Vector2i getCurrentSize();
+        Vector2i getCurrentSize();
     };
 } // namespace app
+#endif // !APP_WPS_H_INCLUDED

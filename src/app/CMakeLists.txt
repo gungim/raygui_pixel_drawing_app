@@ -10,6 +10,10 @@ set(SOURCES
 	workspaces.cpp
 	template.cpp
 	layer_pannel.cpp
+	utils.cpp
+	ui/new_win.cpp
+	ui/resize_canvas.cpp
+	ui/win_widget.cpp
 )
 
 set(HEADERS
@@ -23,6 +27,10 @@ set(HEADERS
 	workspaces.hpp
 	template.hpp
 	layer_pannel.hpp
+	utils.hpp
+	ui/new_win.hpp
+	ui/resize_canvas.hpp
+	ui/win_widget.hpp
 )
 
 add_library(app-lib
@@ -30,10 +38,7 @@ add_library(app-lib
 	${HEADERS}
 )
 target_link_libraries(app-lib
-	rdrawing
-	raygui
 	raylib
-
-	ui-lib
-	util-lib
+	raygui
+	rdrawing
 )

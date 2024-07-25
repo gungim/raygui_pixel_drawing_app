@@ -1,5 +1,7 @@
+#ifndef APP_MAIN_WINDOW_H_INCLUDED
+#define APP_MAIN_WINDOW_H_INCLUDED
+
 namespace app {
-    class Context;
     class WorkSpaces;
     class TopBar;
     class Toolbar;
@@ -13,6 +15,7 @@ namespace app {
       public:
         MainWindow();
         ~MainWindow();
-        void draw(Context* context);
+        void draw();
     };
 } // namespace app
+#endif // !APP_MAIN_WINDOW_INCLUDED

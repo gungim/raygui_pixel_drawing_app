@@ -12,11 +12,11 @@ namespace app {
     MainWindow::~MainWindow() {
         delete this->workspaces;
         delete this->toolbar;
-        delete this->toolbar;
+        delete this->topbar;
     }
-    void MainWindow::draw(Context* context) {
+    void MainWindow::draw() {
         this->workspaces->draw();
-        this->topbar->draw(context, (Vector2){0, 0});
+        this->topbar->draw();
         this->toolbar->draw();
     }
 } // namespace app

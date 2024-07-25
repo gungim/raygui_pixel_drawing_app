@@ -1,5 +1,5 @@
 #include "resize_canvas.hpp"
-#include "../app/workspaces.hpp"
+#include "../workspaces.hpp"
 #include "raygui.h"
 namespace app {
     ResizeCanvasWin::ResizeCanvasWin() {

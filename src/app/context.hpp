@@ -1,3 +1,6 @@
+#ifndef APP_CONTEXT_H_INCLUDED
+#define APP_CONTEXT_H_INCLUDED
+
 #include "raylib.h"
 #include <vector>
 
@@ -41,3 +44,4 @@ namespace app {
         ~Context();
     };
 } // namespace app
+#endif // !APP_CONTEXT_H_INCLUDED

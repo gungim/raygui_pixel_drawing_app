@@ -1,14 +1,16 @@
+#ifndef APP_H_INCLUDED
+#define APP_H_INCLUDED
+
 #include "raylib.h"
 namespace app {
     class MainWindow;
-    class Context;
-    class TopBar;
+    // class TopBar;
 
     class App {
       private:
         Vector2 screenSize;
-        Context* context;
         MainWindow* main_widdow;
+        bool exitWindow;
 
       public:
         App();
@@ -17,3 +19,4 @@ namespace app {
         void init();
     };
 } // namespace app
+#endif // !APP_H_INCLUDED

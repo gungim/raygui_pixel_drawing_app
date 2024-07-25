@@ -1,22 +1,28 @@
+#include "raylib.h"
+
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h"
+#undef RAYGUI_IMPLEMENTATION
+#define RAYGUI_SUPPORT_ICONS
+
 #include "app.hpp"
-#include "context.hpp"
 #include "main_window.hpp"
 
-#include "raygui.h"
-
 namespace app {
-    App::App() { this->screenSize = {800., 600.}; }
-    App::~App() {
-        this->main_widdow = nullptr;
-        this->context = nullptr;
+    App::App() {
+        this->screenSize = {800., 600.};
+        this->exitWindow = false;
     }
+    App::~App() { this->main_widdow = nullptr; }
     void App::init() {
-        this->context = new Context();
         this->main_widdow = new MainWindow();
 
+        SetConfigFlags(FLAG_WINDOW_UNDECORATED);
         SetConfigFlags(FLAG_WINDOW_RESIZABLE); // Window configuration flags
-        GuiLoadStyleDefault();
-        GuiLoadIcons("/Users/admin/Dev/cmake/raygui_pixel_drawing_app2/assets/iconset.rgi", true);
+                                               //
+        GuiLoadIcons("/Users/admin/Dev/cmake/raygui_pixel_drawing_app2/assets/"
+                     "iconset.rgi",
+                     true);
 
         InitWindow(this->screenSize.x, this->screenSize.y,
                    "raygui - portable window");
@@ -25,15 +31,19 @@ namespace app {
 
     void App::run() {
 
-        while (!WindowShouldClose()) // Detect window close button or ESC key
+        while (!WindowShouldClose() &&
+               !this->exitWindow) // Detect window close button or ESC key
         {
             // Update
             //----------------------------------------------------------------------------------
             BeginDrawing();
+
+            exitWindow = GuiWindowBox(
+                (Rectangle){0, 0, this->screenSize.x, this->screenSize.y},
+                "#198# PORTABLE WINDOW");
             ClearBackground(RAYWHITE);
-            if (this->main_widdow) {
-                main_widdow->draw(this->context);
-            }
+            main_widdow->draw();
+
             //----------------------------------------------------------------------------------
             EndDrawing();
         }

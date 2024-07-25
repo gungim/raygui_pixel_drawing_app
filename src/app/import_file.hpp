@@ -1,3 +1,6 @@
+#ifndef APP_IMPORT_FILE_H_INCLUDED
+#define APP_IMPORT_FILE_H_INCLUDED
+
 #include "raylib.h"
 
 namespace app {
@@ -30,3 +33,4 @@ namespace app {
         void Draw(Context context);
     };
 } // namespace app
+#endif // !APP_IMPORT_FILE_H_INCLUDED

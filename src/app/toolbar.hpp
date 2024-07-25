@@ -1,7 +1,9 @@
+#ifndef APP_TOOLBAR_H_INCLUDED
+#define APP_TOOLBAR_H_INCLUDED
+
 #include "raylib.h"
 
 namespace app {
-    class Context;
     static const int MAX_TOOL = 11;
     static const char* guiControlText[MAX_TOOL] = {
         "#108#", // Select area
@@ -36,7 +38,7 @@ namespace app {
         Vector2 size;
         int selectedTool;
         int scrollIndex;
-        int outlineMode;
+        bool outlineMode;
 
         static Toolbar* m_instance;
 
@@ -49,3 +51,4 @@ namespace app {
         static Toolbar* instance() { return m_instance; }
     };
 } // namespace app
+#endif // !APP_TOOLBAR_H_INCLUDED

@@ -1,14 +1,18 @@
+#ifndef APP_TOPBAR_H_INCLUDED
+#define APP_TOPBAR_H_INCLUDED
+
 #include "raylib.h"
 
 namespace app {
     class NewWin;
-    class Context;
     class ResizeCanvasWin;
+#define TOPBAR_ITEM_SPACING 4
+#define TOPBAR_ITEM_SIZE 24
 
     class TopBar {
       private:
-        float width;
-        float height;
+        Vector2 size;
+        Vector2 offset;
 
         NewWin* newWin;
         ResizeCanvasWin* resizeCanvas;
@@ -16,7 +20,8 @@ namespace app {
       public:
         TopBar();
         ~TopBar();
-        void draw(Context* context, Vector2 offset);
+        void draw();
         void LoadFile();
     };
 } // namespace app
+#endif // !APP_TOPBAR_H_INCLUDED

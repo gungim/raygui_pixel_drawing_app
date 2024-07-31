@@ -32,7 +32,7 @@ namespace app {
         static WorkSpaces* instance() { return m_instance; }
         void draw();
         void addPro(WorkSpace* wp);
-        void add(int width, int height, char* name);
+        void add(Vector2i n_size, char* name);
         void setCurrent(int index);
         void resize(int width, int height);
         WorkSpace* getActive();

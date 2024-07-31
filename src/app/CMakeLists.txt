@@ -9,7 +9,9 @@ set(SOURCES
 	workspace.cpp
 	workspaces.cpp
 	template.cpp
-	layer_pannel.cpp
+	layer/layer_pannel.cpp
+	layer/layer.cpp
+	layer/sprite.cpp
 	utils.cpp
 	ui/new_win.cpp
 	ui/resize_canvas.cpp
@@ -26,11 +28,14 @@ set(HEADERS
 	workspace.hpp
 	workspaces.hpp
 	template.hpp
-	layer_pannel.hpp
+	layer/layer_pannel.hpp
+	layer/layer.hpp
+	layer/sprite.hpp
 	utils.hpp
 	ui/new_win.hpp
 	ui/resize_canvas.hpp
 	ui/win_widget.hpp
+	style.hpp
 )
 
 add_library(app-lib

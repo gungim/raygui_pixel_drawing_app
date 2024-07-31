@@ -17,14 +17,14 @@ namespace app {
 
     Toolbar::~Toolbar() { delete m_instance; };
     void Toolbar::draw() {
-        GuiListView((Rectangle){this->offset.x, this->offset.y, this->size.x,
-                                this->size.y},
+        GuiListView((Rectangle){this->offset.x, this->offset.y,
+                                (float)this->size.x, (float)this->size.y},
                     TextJoin(guiControlText, MAX_TOOL, ";"), &this->scrollIndex,
                     &this->selectedTool);
 
-        GuiToggle(
-            (Rectangle){this->offset.x, this->size.y + this->offset.y + 2},
-            "#221#", &this->outlineMode);
+        GuiToggle((Rectangle){this->offset.x, this->offset.y + this->size.y,
+                              (float)this->size.x, (float)this->size.x},
+                  "#221#", &this->outlineMode);
     }
     int Toolbar::getCurrentTool() { return this->selectedTool; }
     bool Toolbar::getOutlineMode() { return this->outlineMode; }

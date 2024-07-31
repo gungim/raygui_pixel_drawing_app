@@ -3,8 +3,8 @@
 namespace app {
     Templates::Templates() {
         this->tpls = {
-            (Template){{0., 0.}, "Custom"},
-            (Template){{16., 16.}, "16x16"},
+            (Template){{0, 0}, "Custom"},
+            (Template){{16, 16}, "16x16"},
             (Template){{32, 32}, "32x32"},
             (Template){{64, 64}, "64x64"},
             (Template){{128, 128}, "128x128"},

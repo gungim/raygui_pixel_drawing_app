@@ -2,16 +2,15 @@
 #define APP_TOPBAR_H_INCLUDED
 
 #include "raylib.h"
+#include "utils.hpp"
 
 namespace app {
     class NewWin;
     class ResizeCanvasWin;
-#define TOPBAR_ITEM_SPACING 4
-#define TOPBAR_ITEM_SIZE 24
 
     class TopBar {
       private:
-        Vector2 size;
+        Vector2i size;
         Vector2 offset;
 
         NewWin* newWin;

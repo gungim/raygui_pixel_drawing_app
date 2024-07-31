@@ -2,6 +2,7 @@
 #define APP_TOOLBAR_H_INCLUDED
 
 #include "raylib.h"
+#include "utils.hpp"
 
 namespace app {
     static const int MAX_TOOL = 11;
@@ -35,7 +36,7 @@ namespace app {
     class Toolbar {
       private:
         Vector2 offset;
-        Vector2 size;
+        Vector2i size;
         int selectedTool;
         int scrollIndex;
         bool outlineMode;

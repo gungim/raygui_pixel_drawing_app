@@ -1,9 +1,9 @@
 #include "workspaces.hpp"
+#include "app/utils.hpp"
 #include "import_file.hpp"
 #include "raylib.h"
 #include "toolbar.hpp"
 #include "workspace.hpp"
-
 
 #include "iostream"
 #include <cstring>
@@ -43,13 +43,8 @@ namespace app {
     }
     void WorkSpaces::draw() {
         if (this->activeWorkspace) {
-            // this->activeWorkspace->draw();
+            this->activeWorkspace->draw();
         }
-        // c_ui::CGuiTabBar((Rectangle){0, 32, (float)GetScreenWidth(), 32},
-                         // (const char**)this->tabList,
-                         // &this->activeWorkspaceIndex, this->tabCount);
-
-        GuiGroupBox((Rectangle){100, 200, 180, 90}, "Size");
     }
     void WorkSpaces::setCurrent(int index) {
         if (index < this->workspaces.size()) {
@@ -63,8 +58,8 @@ namespace app {
         this->activeWorkspace = wp;
         std::cout << "Add workspace success" << std::endl;
     }
-    void WorkSpaces::add(int w, int h, char* name) {
-        WorkSpace* wp = new WorkSpace({w, h});
+    void WorkSpaces::add(Vector2i n_size, char* name) {
+        WorkSpace* wp = new WorkSpace(n_size);
         wp->initialize();
         this->workspaces.push_back(wp);
         this->activeWorkspace = wp;

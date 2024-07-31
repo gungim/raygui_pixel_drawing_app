@@ -79,7 +79,7 @@ namespace app {
                                       this->size.x - 20, 25},
                           "New")) {
                 WorkSpaces* wps = WorkSpaces::instance();
-                wps->add(this->width, this->height, this->name);
+                wps->add({this->width, this->height}, this->name);
                 this->isOpen = false;
             };
 

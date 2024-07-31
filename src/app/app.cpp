@@ -10,12 +10,15 @@
 
 namespace app {
     App::App() {
-        this->screenSize = {800., 600.};
+        this->screenSize = {1100., 900.};
         this->exitWindow = false;
     }
     App::~App() { this->main_widdow = nullptr; }
     void App::init() {
         this->main_widdow = new MainWindow();
+        // int display = GetCurrentMonitor();
+
+        // GuiSetStyle(BUTTON, BORDER_WIDTH, 1);
 
         SetConfigFlags(FLAG_WINDOW_UNDECORATED);
         SetConfigFlags(FLAG_WINDOW_RESIZABLE); // Window configuration flags
@@ -27,6 +30,7 @@ namespace app {
         InitWindow(this->screenSize.x, this->screenSize.y,
                    "raygui - portable window");
         SetTargetFPS(24);
+        // SetWindowSize(GetMonitorWidth(display), GetMonitorHeight(display));
     }
 
     void App::run() {
